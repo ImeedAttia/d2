@@ -7,11 +7,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-import com.droovo.tn.usermessagingservice.Entites.Utilisateur;
-=======
 import com.droovo.tn.usermessagingservice.Entites.UserDetail;
->>>>>>> rebuild
 
 import java.security.Key;
 import java.util.Date;
@@ -40,21 +36,13 @@ public class JwtService {
     }
 
     //generate token with user details as parameter
-<<<<<<< HEAD
-    public String generateToken(Utilisateur userDetails) {
-=======
-    public String generateToken(UserDetail userDetails) {
->>>>>>> rebuild
-        return generateToken(Map.of(), userDetails);
+    public String generateToken(UserDetail userDetail) {
+        return generateToken(Map.of(), userDetail);
     }
     //generate token with extra claims and user details as parameter
     public String generateToken(
             Map<String, Object> extraClaims,
-<<<<<<< HEAD
-            Utilisateur userDetails
-=======
             UserDetail userDetails
->>>>>>> rebuild
     ) {
         return Jwts
                 .builder()
@@ -63,11 +51,7 @@ public class JwtService {
                 .claim("role", userDetails.getType())
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-<<<<<<< HEAD
-                  .addClaims( Map.of("user_id",((Utilisateur) userDetails).getId().toString() ))
-=======
                   .addClaims( Map.of("user_id",((UserDetail) userDetails).getId().toString() ))
->>>>>>> rebuild
                 //10 hours
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)

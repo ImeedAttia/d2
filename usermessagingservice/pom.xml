@@ -8,10 +8,7 @@
 		<version>3.4.3</version>
 		<relativePath/>
 	</parent>
-<<<<<<< HEAD
 	<groupId>com.droovo.tn</groupId>
-=======
->>>>>>> rebuild
 	<artifactId>usermessagingservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>usermessagingservice</name>
@@ -34,9 +31,6 @@
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<lombok.version>1.18.30</lombok.version>
 		<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-<<<<<<< HEAD
-	</properties>
-=======
 		<spring-cloud.version>2024.0.1</spring-cloud.version>
 	</properties>
 	<dependencyManagement>
@@ -50,12 +44,9 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
->>>>>>> rebuild
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-<<<<<<< HEAD
 			<artifactId>spring-boot-starter-data-jdbc</artifactId>
 		</dependency>
 		<dependency>
@@ -70,11 +61,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web-services</artifactId>
 		</dependency>
-=======
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
->>>>>>> rebuild
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -163,19 +149,14 @@
 			<artifactId>mapstruct</artifactId>
 			<version>${mapstruct.version}</version>
 		</dependency>
-<<<<<<< HEAD
 
-	</dependencies>
-
-=======
-		<dependency>
+<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
 
 	</dependencies>
->>>>>>> rebuild
 	<build>
 		<plugins>
 			<plugin>

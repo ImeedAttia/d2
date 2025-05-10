@@ -19,10 +19,10 @@ import java.util.List;
  * <p>
  * Fields:
  * <ul>
-<<<<<<< HEAD
-=======
+ * <<<<<<< HEAD
+ * =======
  *   <li>{@code uid} - Car manufacturer (e.g., Toyota, Ford).</li>
->>>>>>> rebuild
+ * >>>>>>> rebuild
  *   <li>{@code brand} - Car manufacturer (e.g., Toyota, Ford).</li>
  *   <li>{@code model} - Specific model of the car.</li>
  *   <li>{@code description} - Optional description or details about the car.</li>
@@ -36,10 +36,7 @@ import java.util.List;
  * </ul>
  */
 public record CarDto(
-<<<<<<< HEAD
-=======
         String uid,
->>>>>>> rebuild
         String brand,
         String model,
         String description,
@@ -50,5 +47,6 @@ public record CarDto(
         boolean airConditioner,
         String image,
         int possibleSeats
-) {}
+) {
+}
 

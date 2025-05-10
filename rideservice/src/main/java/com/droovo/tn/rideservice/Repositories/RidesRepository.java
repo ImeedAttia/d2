@@ -6,9 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface RidesRepository extends MongoRepository<Rides, String> {
-<<<<<<< HEAD
-    Optional<Rides> findById(String id);
-=======
     Optional<Rides> findById(String uid);
->>>>>>> rebuild
 }

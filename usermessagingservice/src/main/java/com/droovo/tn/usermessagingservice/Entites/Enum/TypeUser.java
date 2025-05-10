@@ -6,11 +6,7 @@ import lombok.Getter;
 public enum TypeUser {
     ADMIN(1, "Administrateur"),
     DRIVER(2, "Chauffeur"),
-<<<<<<< HEAD
-    USER(3, "Utilisateur");
-=======
     USER(3, "UserDetail");
->>>>>>> rebuild
 
     private final int id;
     private final String description;

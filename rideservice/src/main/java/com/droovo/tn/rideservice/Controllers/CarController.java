@@ -2,10 +2,6 @@ package com.droovo.tn.rideservice.Controllers;
 
 import com.droovo.tn.rideservice.DTO.CarDto;
 import com.droovo.tn.rideservice.Services.ICarService;
-<<<<<<< HEAD
-=======
-import jakarta.validation.Valid;
->>>>>>> rebuild
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -37,11 +33,7 @@ public class CarController {
      * @return the created car
      */
     @PostMapping
-<<<<<<< HEAD
     public ResponseEntity<CarDto> createCar(@RequestBody CarDto carDto) {
-=======
-    public ResponseEntity<CarDto> createCar(@Valid @RequestBody CarDto carDto) {
->>>>>>> rebuild
         log.info("Creating new car");
         return ResponseEntity.ok(carService.createCar(carDto));
     }

@@ -1,21 +1,12 @@
 package com.droovo.tn.usermessagingservice.Controller.Authentication;
 
-<<<<<<< HEAD
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-=======
->>>>>>> rebuild
 import com.droovo.tn.usermessagingservice.Entites.Auth.AuthenticationRequest;
 import com.droovo.tn.usermessagingservice.Entites.Auth.AuthenticationResponse;
 import com.droovo.tn.usermessagingservice.Entites.Auth.RegisterRequest;
 import com.droovo.tn.usermessagingservice.Services.Impl.AuthenticationService;
-<<<<<<< HEAD
-=======
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
->>>>>>> rebuild
 
 @RestController
 @CrossOrigin(origins = "*")

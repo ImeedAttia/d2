@@ -16,10 +16,7 @@ public class ReclamationServiceImpl implements ReclamationService {
     ReclamationRepository reclamationRepository;
     @Override
     public Reclamation saveReclamation(Reclamation reclamation) {
-<<<<<<< HEAD
-=======
         Reclamation r = reclamationRepository.findById(reclamation.getId()).orElse(null);
->>>>>>> rebuild
         reclamation.setStatus(ApprovalStatus.PENDING);
         return reclamationRepository.save(reclamation);
     }

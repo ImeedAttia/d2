@@ -1,9 +1,6 @@
 package com.droovo.tn.usermessagingservice.Services.Impl;
 
-<<<<<<< HEAD
-=======
 import com.droovo.tn.usermessagingservice.Entites.UserDetail;
->>>>>>> rebuild
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -12,14 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import com.droovo.tn.usermessagingservice.Entites.Message;
-<<<<<<< HEAD
-import com.droovo.tn.usermessagingservice.Entites.Utilisateur;
-import com.droovo.tn.usermessagingservice.Repositories.MessageRepository;
-import com.droovo.tn.usermessagingservice.Repositories.UtilisateurRepository;
-=======
 import com.droovo.tn.usermessagingservice.Repositories.MessageRepository;
 import com.droovo.tn.usermessagingservice.Repositories.UserDetailRepository;
->>>>>>> rebuild
 import com.droovo.tn.usermessagingservice.Services.EmailService;
 
 import java.text.SimpleDateFormat;
@@ -31,12 +22,7 @@ import java.util.List;
 public class EmailServiceImpl implements EmailService {
     private final JavaMailSender emailSender;
     private final MessageRepository messageRepository;
-
-<<<<<<< HEAD
-    private final UtilisateurRepository utilisateurRepository;
-=======
     private final UserDetailRepository userDetailRepository;
->>>>>>> rebuild
 
     @Override
     public void sendSimpleEmail(String to, String subject, String text) {
@@ -48,11 +34,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-<<<<<<< HEAD
-    public void sendEmailWithTemplate(Utilisateur user) {
-=======
+
     public void sendEmailWithTemplate(UserDetail user) {
->>>>>>> rebuild
         // Créer une instance de MimeMessage à l'aide de la fonction JavaMailSender
         MimeMessage message = emailSender.createMimeMessage();
 
@@ -142,13 +125,8 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public Message  saveMessage(Message message) {
-<<<<<<< HEAD
-        Utilisateur sender = utilisateurRepository.findById(message.getSender().getId()).orElseThrow(() -> new RuntimeException("Sender not found"));
-        Utilisateur receiver = utilisateurRepository.findById(message.getReceiver().getId()).orElseThrow(() -> new RuntimeException("Receiver not found"));
-=======
         UserDetail sender = userDetailRepository.findById(message.getSender().getId()).orElseThrow(() -> new RuntimeException("Sender not found"));
         UserDetail receiver = userDetailRepository.findById(message.getReceiver().getId()).orElseThrow(() -> new RuntimeException("Receiver not found"));
->>>>>>> rebuild
         message.setSender(sender);
         message.setReceiver(receiver);
         return messageRepository.save(message);
@@ -164,17 +142,10 @@ public class EmailServiceImpl implements EmailService {
     }
     @Override
     public Message sendMessage(Long senderId, Long receiverId, String content) {
-<<<<<<< HEAD
-        Utilisateur sender = utilisateurRepository.findById(senderId)
-                .orElseThrow(() -> new RuntimeException("Sender not found"));
-
-        Utilisateur receiver = utilisateurRepository.findById(receiverId)
-=======
         UserDetail sender = userDetailRepository.findById(senderId)
                 .orElseThrow(() -> new RuntimeException("Sender not found"));
 
         UserDetail receiver = userDetailRepository.findById(receiverId)
->>>>>>> rebuild
                 .orElseThrow(() -> new RuntimeException("Receiver not found"));
 
         Message message = new Message();

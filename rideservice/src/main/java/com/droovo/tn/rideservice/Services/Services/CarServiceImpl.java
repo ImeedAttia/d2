@@ -17,10 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-<<<<<<< HEAD
-=======
 import org.springframework.util.Assert;
->>>>>>> rebuild
 import org.springframework.util.ObjectUtils;
 
 import java.time.LocalDateTime;
@@ -52,11 +49,7 @@ public class CarServiceImpl implements ICarService {
             log.warn("Car creation failed: Car number already exists");
             return null;
         }
-<<<<<<< HEAD
-=======
         Assert.isTrue(!carRepository.existsByCarNo(car.getCarNo()), "Car number cannot be null");
->>>>>>> rebuild
-
         if (car.getDescription() == null || car.getColor() == null || car.getFuelCons() == 0.0) {
             log.warn("Car creation failed: Missing required fields");
             return null;

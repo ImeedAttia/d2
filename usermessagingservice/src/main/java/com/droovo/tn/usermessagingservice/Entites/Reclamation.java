@@ -1,39 +1,5 @@
 package com.droovo.tn.usermessagingservice.Entites;
 
-<<<<<<< HEAD
-import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-import com.droovo.tn.usermessagingservice.Entites.Enum.ApprovalStatus;
-import com.droovo.tn.usermessagingservice.Entites.Enum.TypeReclamation;
-
-import java.time.LocalDate;
-
-@Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@ToString
-@EqualsAndHashCode
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class Reclamation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    LocalDate dateSoumission;
-    LocalDate dateCloture;
-    String titre;
-    String description;
-    @Enumerated(EnumType.STRING)
-    TypeReclamation typeReclamation;
-    @Enumerated(EnumType.STRING)
-    ApprovalStatus status;
-    @ManyToOne
-    Utilisateur utilisateurReclamation;
-
-=======
 import com.droovo.tn.usermessagingservice.Entites.Enum.ApprovalStatus;
 import com.droovo.tn.usermessagingservice.Entites.Enum.TypeReclamation;
 import lombok.*;
@@ -64,5 +30,4 @@ public class Reclamation {
     ApprovalStatus status;
     UserDetail user;
     String rideId;
->>>>>>> rebuild
 }

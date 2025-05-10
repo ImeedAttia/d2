@@ -23,10 +23,7 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfiguration {
 
     private static final String[] WHITE_LIST_URL = {
-<<<<<<< HEAD
             "/v1/auth/**",
-=======
->>>>>>> rebuild
             "/**"
     };
 
@@ -43,12 +40,9 @@ public class SecurityConfiguration {
 //                                .requestMatchers(PUT, "/Reclamation/**").hasAnyAuthority(TypeUser.RH.name(), TypeUser.EMPLOYE.name())
                                 .requestMatchers(DELETE, "/Utilisateur/**").hasAnyAuthority(TypeUser.ADMIN.name())
                                 .requestMatchers(PUT, "/Utilisateur/**").hasAnyAuthority(TypeUser.ADMIN.name())
-                                .requestMatchers(PUT, "/FeedBack/**").hasAnyAuthority(TypeUser.ADMIN.name(),TypeUser.USER.name())
-<<<<<<< HEAD
+                                .requestMatchers(PUT, "/FeedBack/**").hasAnyAuthority(TypeUser.ADMIN.name(),TypeUser.DRIVER.name())
                                 .requestMatchers(DELETE, "/FeedBack/**").hasAnyAuthority(TypeUser.ADMIN.name())
-=======
                                 .requestMatchers(DELETE, "/car/**").hasAnyAuthority(TypeUser.ADMIN.name())
->>>>>>> rebuild
 
                                 .anyRequest()
                                 .authenticated()

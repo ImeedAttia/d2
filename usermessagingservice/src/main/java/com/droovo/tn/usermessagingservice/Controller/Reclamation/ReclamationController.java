@@ -1,20 +1,5 @@
 package com.droovo.tn.usermessagingservice.Controller.Reclamation;
 
-<<<<<<< HEAD
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import com.droovo.tn.usermessagingservice.Entites.Reclamation;
-import com.droovo.tn.usermessagingservice.Services.Reclamation.ReclamationService;
-
-import java.util.List;
-
-@RestController
-@CrossOrigin("*")
-@RequestMapping("/Reclamation")
-@AllArgsConstructor
-=======
 import com.droovo.tn.usermessagingservice.Entites.Reclamation;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +19,6 @@ import java.util.List;
 @Slf4j
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @FieldDefaults(level = AccessLevel.PRIVATE)
->>>>>>> rebuild
 public class ReclamationController {
     private ReclamationService reclamationService;
     @PostMapping

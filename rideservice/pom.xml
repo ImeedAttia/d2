@@ -19,6 +19,7 @@
 		<mapstruct.version>1.5.5.Final</mapstruct.version>
 		<lombok.version>1.18.30</lombok.version>
 		<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+		<maven.compiler.source>21</maven.compiler.source>
 	</properties>
 
 	<dependencies>
