@@ -1,0 +1,25 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="openapi.yaml" type="SwaggerCodegen" singleton="false" show_console_on_std_err="false" show_console_on_std_out="false">
+    <option name="allowRunningInParallel" value="true" />
+    <option name="customTemplatesPath" value="" />
+    <option name="envs">
+      <map />
+    </option>
+    <option name="generateToPath" value="C:\Users\imeda\IdeaProjects\droovo-backend\rideservice\src\main\gen" />
+    <option name="generationParameters">
+      <list />
+    </option>
+    <option name="generatorType" value="OPENAPI_GENERATOR_V6" />
+    <option name="jdkPath" value="C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.5\jbr\bin\java.exe" />
+    <option name="language" value="java" />
+    <option name="passParentEnvs" value="true" />
+    <option name="programParameters" />
+    <option name="projectPathOnTarget" />
+    <option name="selectedOptions">
+      <list />
+    </option>
+    <option name="specificationPath" value="C:\Users\imeda\IdeaProjects\droovo-backend\rideservice\src\main\resources\static\openapi.yaml" />
+    <option name="workingDirectory" value="C:\Users\imeda\IdeaProjects\droovo-backend\rideservice\src\main\resources\static" />
+    <method v="2" />
+  </configuration>
+</component>
