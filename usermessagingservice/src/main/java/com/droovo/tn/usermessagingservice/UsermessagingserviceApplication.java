@@ -6,9 +6,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 @SpringBootApplication
-@EnableFeignClients
+    @EnableFeignClients
 public class UsermessagingserviceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(UsermessagingserviceApplication.class, args);
     }

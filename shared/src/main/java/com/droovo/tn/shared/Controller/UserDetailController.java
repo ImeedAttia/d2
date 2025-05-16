@@ -1,9 +1,9 @@
-package com.droovo.tn.usermessagingservice.Controller;
-import com.droovo.tn.usermessagingservice.Clients.Services.CarClientService;
-import com.droovo.tn.usermessagingservice.Entites.UserDetail;
-import com.droovo.tn.usermessagingservice.Entites.shared.CarClientDto;
-import com.droovo.tn.usermessagingservice.Services.EmailService;
-import com.droovo.tn.usermessagingservice.Services.UserDetailService;
+package com.droovo.tn.shared.Controller;
+
+import com.droovo.tn.shared.Clients.Services.CarClientService;
+import com.droovo.tn.shared.Services.IUserService;
+import com.droovo.tn.shared.dto.CarDTO;
+import com.droovo.tn.shared.dto.UserDTO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -22,29 +21,34 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDetailController {
-    final UserDetailService userDetailService;
-    final EmailService emailService;
+    final IUserService userDetailService;
+    final IUserService emailService;
     final CarClientService carClientService;
     @GetMapping("/car/{id}")
-    public ResponseEntity<CarClientDto> getCarById(@PathVariable String id) {
-        CarClientDto carClientDto = carClientService.fetchRide(id);
+    public ResponseEntity<CarDTO> getCarById(@PathVariable String id) {
+        CarDTO carClientDto = carClientService.getCarById(id);
+        return new ResponseEntity<>(carClientDto, HttpStatus.OK);
+    }
+    @GetMapping("/car")
+    public ResponseEntity<List<CarDTO>> getAllCars() {
+        List<CarDTO> carClientDto = carClientService.getAllCars();
         return new ResponseEntity<>(carClientDto, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<UserDetail> createUserDetail(@RequestBody UserDetail utilisateur) {
-        UserDetail savedUserDetail = userDetailService.saveUserDetail(utilisateur);
+    public ResponseEntity<UserDTO> createUserDetail(@RequestBody UserDTO utilisateur) {
+        UserDTO savedUserDetail = userDetailService.saveUserDetail(utilisateur);
         return new ResponseEntity<>(savedUserDetail, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDetail> getUserDetailById(@PathVariable Long id) {
-        UserDetail utilisateur = userDetailService.getUserDetailById(id);
+    public ResponseEntity<UserDTO> getUserDetailById(@PathVariable Long id) {
+        UserDTO utilisateur = userDetailService.getUserDetailById(id);
         return new ResponseEntity<>(utilisateur, HttpStatus.OK);
     }
     @GetMapping("/email/{email}")
-    public ResponseEntity<UserDetail> getUserDetailByEmail(@PathVariable String email) {
-        UserDetail utilisateur = userDetailService.getUserDetailByEmail(email);
+    public ResponseEntity<UserDTO> getUserDetailByEmail(@PathVariable String email) {
+        UserDTO utilisateur = userDetailService.getUserDetailByEmail(email);
         if (utilisateur != null) {
             return new ResponseEntity<>(utilisateur, HttpStatus.OK);
         } else {
@@ -53,14 +57,14 @@ public class UserDetailController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDetail>> getAllUserDetails() {
-        List<UserDetail> utilisateurs = userDetailService.getAllUserDetails();
+    public ResponseEntity<List<UserDTO>> getAllUserDetails() {
+        List<UserDTO> utilisateurs = userDetailService.getAllUserDetails();
         return new ResponseEntity<>(utilisateurs, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDetail> updateUserDetail(@PathVariable Long id, @RequestBody UserDetail utilisateur) {
-        UserDetail updatedUserDetail = userDetailService.updateUserDetail(id, utilisateur);
+    public ResponseEntity<UserDTO> updateUserDetail(@PathVariable Long id, @RequestBody UserDTO utilisateur) {
+        UserDTO updatedUserDetail = userDetailService.updateUserDetail(id, utilisateur);
         if (updatedUserDetail != null) {
             return new ResponseEntity<>(updatedUserDetail, HttpStatus.OK);
         } else {
@@ -76,7 +80,7 @@ public class UserDetailController {
 
     @PostMapping("/mail/{userId}")
     public ResponseEntity<String> sendMail(@PathVariable long userId) {
-        UserDetail user = userDetailService.getUserDetailById(userId);
+        UserDTO user = userDetailService.getUserDetailById(userId);
         emailService.sendEmailWithTemplate(user);
         return new ResponseEntity<String>("Mail sent", HttpStatus.OK);
     }
