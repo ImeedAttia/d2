@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.droovo.tn.shared")
+//@ComponentScan("com.droovo.tn.shared")
 public class RideserviceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RideserviceApplication.class, args);
