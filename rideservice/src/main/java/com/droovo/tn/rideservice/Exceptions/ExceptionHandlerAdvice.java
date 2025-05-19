@@ -19,5 +19,19 @@ public class ExceptionHandlerAdvice {
         map.put("error", exception.getMessage());
         return map;
     }
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @ExceptionHandler(RideNotFoundException.class)
+    public Map<String, String> handlePatientNotFoundException(RideNotFoundException exception){
+        Map<String, String> map = new HashMap<>();
+        map.put("error", exception.getMessage());
+        return map;
+    }
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(RideServiceException.class)
+    public Map<String, String> handlePatientServiceException(RideServiceException exception){
+        Map<String, String> map = new HashMap<>();
+        map.put("error", exception.getMessage());
+        return map;
+    }
 
 }
