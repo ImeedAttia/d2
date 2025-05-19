@@ -46,6 +46,13 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+		<!--Shared Dependencie-->
+		<dependency>
+			<groupId>com.droovo.tn</groupId>
+			<artifactId>shared</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!--end Shared Dependencie-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

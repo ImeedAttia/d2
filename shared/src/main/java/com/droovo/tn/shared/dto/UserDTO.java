@@ -34,7 +34,7 @@ public class UserDTO implements UserDetails {
     // true => online, false => offline
     boolean status;
     // true => active, false => inactive
-    boolean accountStatus = true;
+    boolean accountStatus;
     TypeUser type;
     UserStatus userStatus;
 
