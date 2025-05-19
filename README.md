@@ -16,29 +16,45 @@ The services are decoupled, independently deployable, and communicate over REST 
 
 ## 🚀 Services Overview
 
-### 1. 🚗 RideService
-
+### 0. 📦 Shared
 Manages:
 
-* Car information
-* Ride creation and lifecycle
-* MongoDB persistence
+Common DTOs used by RideService and UserMessagingService
 
-\| Endpoint Base | `/cars`, `/rides` |
-\| Persistence   | MongoDB |
-\| Status        | ✅ Working |
+Authentication and authorization (e.g., JWT or other strategies)
+
+Entry points (e.g., common filters, exception handlers)
+
+Port	8080
+Status	✅ Working
+
+### 1. 🚗 RideService
+   Manages:
+
+Car information
+
+Ride creation and lifecycle
+
+MongoDB persistence
+
+| Endpoint Base | /cars, /rides |
+| Persistence | MongoDB |
+| Port | 8082 |
+| Status | ✅ Working |
 
 ### 2. 💬 UserMessagingService
+   Manages:
 
-Manages:
+Sending notifications/messages
 
-* Sending notifications/messages
-* User communication workflows
-* Email (via Spring Mail), or WebSocket (optional)
+User communication workflows
 
-\| Endpoint Base | `/messages`, `/notifications` (example) |
-\| Persistence   | MongoDB or in-memory |
-\| Status        | ✅ Working (customize endpoints accordingly) |
+Email (via Spring Mail), or WebSocket (optional)
+
+| Endpoint Base | /messages, /notifications (example) |
+| Persistence | MongoDB or in-memory |
+| Port | 8081 |
+| Status | ✅ Working (customize endpoints accordingly) |
 
 ---
 
@@ -59,13 +75,20 @@ Manages:
 
 ```
 project-root/
-├── rideservice/               # Car & Ride microservice
+├── shared/                   # Common entry points, DTOs, authentication
+│   └── src/main/java/com/droovo/tn/shared
+│       ├── Authentication
+│       ├── DTOs
+│       ├── EntryPoints
+│       └── Application.java
+│
+├── rideservice/              # Car & Ride microservice
 │   └── src/main/java/com/droovo/tn/rideservice
 │       ├── Controllers
 │       ├── Services
 │       ├── Repositories
-│       ├── DTO, Entities
-|       ├── Mappers
+│       ├── DTOs, Entities
+│       ├── Mappers
 │       └── Application.java
 │
 ├── usermessagingservice/     # Messaging microservice
@@ -73,7 +96,7 @@ project-root/
 │       ├── Controllers
 │       ├── Services
 │       ├── DTOs, Entities
-|       ├── Mappers
+│       ├── Mappers
 │       └── Application.java
 ```
 
@@ -140,16 +163,16 @@ mvn spring-boot:run
 
 ## 🛡️ Security
 
-* CORS enabled for all domains (adjust as needed)
-* No authentication by default (suggest JWT or OAuth2 for production)
+* CORS enabled for all domains
+* JWT and OAuth2 for production
 
 ---
 
 ## 🌐 Deployment Tips
 
-* Use Docker Compose or Kubernetes for deploying services together
-* API Gateway (like Spring Cloud Gateway or NGINX) recommended
-* Service discovery (e.g., Eureka, Consul) optional for scaling
+* Use Docker Compose for deploying services together
+* API Gateway Spring Cloud Gateway
+* Service discovery Eureka
 
 ---
 
