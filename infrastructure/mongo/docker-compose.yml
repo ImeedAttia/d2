@@ -1,0 +1,149 @@
+version: "3.8"
+
+services:
+  mongo1:
+    container_name: mongo1
+    build: ./mongo1
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=service_a_db
+    ports:
+      - '27018:27017'
+    volumes:
+      - mongo1_data:/data/db
+      - ./backup:/backup
+      - ./logs/mongo1:/var/log/mongodb
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mongo2:
+    container_name: mongo2
+    build: ./mongo2
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_DATABASE=service_b_db
+    ports:
+      - '27019:27017'
+    volumes:
+      - mongo2_data:/data/db
+      - ./backup:/backup
+      - ./logs/mongo2:/var/log/mongodb
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  redisinsight:
+    image: redis/redisinsight:latest
+    container_name: redisinsight
+    ports:
+      - "8001:8001"
+    networks:
+      - backend
+
+  mongo-express-a:
+    image: mongo-express
+    container_name: mongo-express-a
+    depends_on:
+      - mongo1
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo1
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=tribes
+    ports:
+      - "8081:8081"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mongo-express-b:
+    image: mongo-express
+    container_name: mongo-express-b
+    depends_on:
+      - mongo2
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo2
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pass
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=tribes
+    ports:
+      - "8082:8081"
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=backup_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./logs/postgres:/var/log/postgresql
+    networks:
+      - backend
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "admin"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mongo-exporter:
+    image: percona/mongodb_exporter:0.40
+    container_name: mongo-exporter
+    environment:
+      - MONGODB_URI=mongodb://admin:pass@mongo1:27017/admin
+    ports:
+      - "9216:9216"
+    depends_on:
+      - mongo1
+    networks:
+      - backend
+
+volumes:
+  mongo1_data:
+  mongo2_data:
+  pgdata:
+
+networks:
+  backend:
+    driver: bridge
