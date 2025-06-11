@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "users")
@@ -27,12 +28,12 @@ import java.util.List;
 public class UserDetail implements UserDetails {
 
     @Id
-    Long id;
+    String id;
 
     int cin;
     String email;
     String displayName;
-    Timestamp lastLogin;
+    Date lastLogin;
     String photoURL;
     String uid;
     String phone;

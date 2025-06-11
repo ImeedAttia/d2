@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
-@ComponentScan("com.droovo.tn.shared")
 public class UsermessagingserviceApplication {
     public static void main(String[] args) {
         SpringApplication.run(UsermessagingserviceApplication.class, args);
