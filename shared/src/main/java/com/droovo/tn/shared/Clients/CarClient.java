@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(value = "carervice", url = "${ride.service.url}",fallback = CarsFallback.class)
+@FeignClient(value = "carervice", url = "http://localhost:8082/droovo/rideservices/api",fallback = CarsFallback.class)
 public interface CarClient {
     @GetMapping("/cars/{carId}")
     CarDTO getCarById(@PathVariable("carId") String carId);

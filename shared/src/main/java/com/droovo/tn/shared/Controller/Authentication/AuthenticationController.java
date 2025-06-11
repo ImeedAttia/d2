@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
-    @PostMapping("/register")
+    @PostMapping("/register2")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest registerRequest) {
         return ResponseEntity.ok(authenticationService.register(registerRequest));
     }
-    @PostMapping("/authenticate")
+    @PostMapping("/authenticate2")
     public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest authenticationRequest) {
         return ResponseEntity.ok(authenticationService.authenticate(authenticationRequest));
     }

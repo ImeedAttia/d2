@@ -11,5 +11,5 @@ public interface EmailService {
     Message saveMessage(Message message);
     List<Message> getMessagesByUserIds(Long senderId, Long receiverId);
 
-    Message sendMessage(Long senderId, Long receiverId, String content);
+    Message sendMessage(String senderId, String receiverId, String content);
 }

@@ -51,8 +51,8 @@ public class AuthenticationService {
         var jwt = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwt).build();
     }
-    public AuthenticationResponse authenticateWithuserId(long userId) {
-        var user = userDetailRepository.findById((long) userId).orElse(null);
+    public AuthenticationResponse authenticateWithuserId(String userId) {
+        var user = userDetailRepository.findById(userId).orElse(null);
         var jwt = jwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwt).build();
     }

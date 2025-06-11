@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarClientService {
 
-    private final CarClient rideClient;
-    public CarClientService(CarClient rideClient) {
-        this.rideClient = rideClient;
+    private final CarClient carClient;
+    public CarClientService(CarClient carClient) {
+        this.carClient = carClient;
     }
 
     public CarClientDto fetchRide(String rideId) {
-        return rideClient.getCarById(rideId);
+        return carClient.getCarById(rideId);
     }
 }
