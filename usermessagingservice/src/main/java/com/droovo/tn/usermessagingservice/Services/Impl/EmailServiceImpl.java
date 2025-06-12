@@ -141,7 +141,7 @@ public class EmailServiceImpl implements EmailService {
         return messageRepository.findBySenderIdAndReceiverId(senderId, receiverId);
     }
     @Override
-    public Message sendMessage(Long senderId, Long receiverId, String content) {
+    public Message sendMessage(String senderId, String receiverId, String content) {
         UserDetail sender = userDetailRepository.findById(senderId)
                 .orElseThrow(() -> new RuntimeException("Sender not found"));
 

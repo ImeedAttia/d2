@@ -24,7 +24,7 @@ public class UserDetailServiceImpl implements UserDetailService {
     }
 
     @Override
-    public UserDetail getUserDetailById(Long id) {
+    public UserDetail getUserDetailById(String id) {
         Optional<UserDetail> utilisateurOptional = userDetailRepository.findById(id);
         return utilisateurOptional.orElse(null);
     }
@@ -41,7 +41,7 @@ public class UserDetailServiceImpl implements UserDetailService {
     }
 
     @Override
-    public UserDetail updateUserDetail(Long id, UserDetail userDetail) {
+    public UserDetail updateUserDetail(String id, UserDetail userDetail) {
         Optional<UserDetail> optionalUtilisateur = userDetailRepository.findById(id);
         if (optionalUtilisateur.isPresent()) {
             UserDetail existingUserDetail = optionalUtilisateur.get();
@@ -59,7 +59,7 @@ public class UserDetailServiceImpl implements UserDetailService {
     }
 
     @Override
-    public void deleteUserDetail(Long id) {
+    public void deleteUserDetail(String id) {
         userDetailRepository.deleteById(id);
     }
 

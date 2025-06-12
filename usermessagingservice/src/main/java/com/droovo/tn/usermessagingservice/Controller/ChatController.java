@@ -41,8 +41,8 @@ public class ChatController {
 
     @PostMapping("/send-message")
     public Message sendMessageBetweenUsers(@RequestBody SendMessageRequest request) {
-        Long senderId = request.getSenderId();
-        Long receiverId = request.getReceiverId();
+        String senderId = request.getSenderId();
+        String receiverId = request.getReceiverId();
         String content = request.getContent();
 
         return emailService.sendMessage(senderId, receiverId, content);
