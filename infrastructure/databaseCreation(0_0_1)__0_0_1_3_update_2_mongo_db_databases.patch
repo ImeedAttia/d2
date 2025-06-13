@@ -1,0 +1,129 @@
+Subject: [PATCH] databaseCreation(0.0.1): 0.0.1.3 update 2 mongo db databases
+---
+Index: infrastructure/mongo/.env
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/infrastructure/mongo/.env b/infrastructure/mongo/.env
+new file mode 100644
+--- /dev/null	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
++++ b/infrastructure/mongo/.env	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
+@@ -0,0 +1,13 @@
++# .env
++
++# MongoDB root credentials
++MONGO_INITDB_ROOT_USERNAME=admin
++MONGO_INITDB_ROOT_PASSWORD=pass
++
++# Ports for mapped services
++MONGO_USER_PORT=27018
++MONGO_RIDE_PORT=27019
++
++# MongoDB database names (used internally)
++MONGO_USER_DATABASE=service_a_db
++MONGO_RIDE_DATABASE=service_b_db
+Index: infrastructure/mongo/mongo_ride/mongo_ride_backup.sh
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/infrastructure/mongo/mongo_ride/mongo_ride_backup.sh b/infrastructure/mongo/mongo_ride/mongo_ride_backup.sh
+new file mode 100644
+--- /dev/null	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
++++ b/infrastructure/mongo/mongo_ride/mongo_ride_backup.sh	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
+@@ -0,0 +1,13 @@
++#!/bin/bash
++
++while true; do
++  sleep 3600
++  TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
++  echo "⏳ Dumping at $TIMESTAMP"
++  mongodump --host=mongo_ride \
++            --username="$MONGO_INITDB_ROOT_USERNAME" \
++            --password="$MONGO_INITDB_ROOT_PASSWORD" \
++            --authenticationDatabase=admin \
++            --db=service_b_db \
++            --out=/backup/$TIMESTAMP
++done
+Index: infrastructure/mongo/mongo_user-initdb.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/infrastructure/mongo/mongo_user-initdb.log b/infrastructure/mongo/mongo_user-initdb.log
+new file mode 100644
+--- /dev/null	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
++++ b/infrastructure/mongo/mongo_user-initdb.log	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
+@@ -0,0 +1,48 @@
++{"t":{"$date":"2025-06-12T14:44:51.253+00:00"},"s":"I",  "c":"CONTROL",  "id":23285,   "ctx":"main","msg":"Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
++{"t":{"$date":"2025-06-12T14:44:51.254+00:00"},"s":"I",  "c":"NETWORK",  "id":4915701, "ctx":"main","msg":"Initialized wire specification","attr":{"spec":{"incomingExternalClient":{"minWireVersion":0,"maxWireVersion":21},"incomingInternalClient":{"minWireVersion":0,"maxWireVersion":21},"outgoing":{"minWireVersion":6,"maxWireVersion":21},"isInternalClient":true}}}
++{"t":{"$date":"2025-06-12T14:44:51.255+00:00"},"s":"I",  "c":"NETWORK",  "id":4648601, "ctx":"main","msg":"Implicit TCP FastOpen unavailable. If TCP FastOpen is required, set tcpFastOpenServer, tcpFastOpenClient, and tcpFastOpenQueueSize."}
++{"t":{"$date":"2025-06-12T14:44:51.259+00:00"},"s":"I",  "c":"REPL",     "id":5123008, "ctx":"main","msg":"Successfully registered PrimaryOnlyService","attr":{"service":"TenantMigrationDonorService","namespace":"config.tenantMigrationDonors"}}
++{"t":{"$date":"2025-06-12T14:44:51.259+00:00"},"s":"I",  "c":"REPL",     "id":5123008, "ctx":"main","msg":"Successfully registered PrimaryOnlyService","attr":{"service":"TenantMigrationRecipientService","namespace":"config.tenantMigrationRecipients"}}
++{"t":{"$date":"2025-06-12T14:44:51.259+00:00"},"s":"I",  "c":"CONTROL",  "id":5945603, "ctx":"main","msg":"Multi threading initialized"}
++{"t":{"$date":"2025-06-12T14:44:51.260+00:00"},"s":"F",  "c":"CONTROL",  "id":6384300, "ctx":"main","msg":"Writing fatal message","attr":{"message":"terminate() called. An exception is active; attempting to gather more information\n"}}
++{"t":{"$date":"2025-06-12T14:44:51.260+00:00"},"s":"F",  "c":"CONTROL",  "id":6384300, "ctx":"main","msg":"Writing fatal message","attr":{"message":"std::exception::what(): Operation not permitted\nActual exception type: std::system_error\n\n"}}
++{"t":{"$date":"2025-06-12T14:44:51.260+00:00"},"s":"F",  "c":"CONTROL",  "id":6384300, "ctx":"main","msg":"Writing fatal message","attr":{"message":"\n"}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31380,   "ctx":"main","msg":"BACKTRACE","attr":{"bt":{"backtrace":[{"a":"55F1AEA13E08","b":"55F1A6EAF000","o":"7B64E08","s":"_ZN5mongo15printStackTraceEv","C":"mongo::printStackTrace()","s+":"38"},{"a":"55F1AEA0EDFB","b":"55F1A6EAF000","o":"7B5FDFB","s":"_ZN5mongo12_GLOBAL__N_111myTerminateEv","C":"mongo::(anonymous namespace)::myTerminate()","s+":"DB"},{"a":"55F1AEBB6BFA","b":"55F1A6EAF000","o":"7D07BFA","s":"_ZN10__cxxabiv111__terminateEPFvvE","C":"__cxxabiv1::__terminate(void (*)())","s+":"A"},{"a":"55F1AEBB6C65","b":"55F1A6EAF000","o":"7D07C65","s":"_ZSt9terminatev","C":"std::terminate()","s+":"15"},{"a":"55F1AEBB6DB9","b":"55F1A6EAF000","o":"7D07DB9","s":"__cxa_throw","s+":"49"},{"a":"55F1AEC3CB25","b":"55F1A6EAF000","o":"7D8DB25","s":"_ZSt20__throw_system_errori","C":"std::__throw_system_error(int)","s+":"88"},{"a":"55F1AEC3CD9D","b":"55F1A6EAF000","o":"7D8DD9D","s":"_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE","C":"std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)())","s+":"2D"},{"a":"55F1ABB4DB1C","b":"55F1A6EAF000","o":"4C9EB1C","s":"_ZN5mongo27startSignalProcessingThreadENS_13LogFileStatusE","C":"mongo::startSignalProcessingThread(mongo::LogFileStatus)","s+":"11C"},{"a":"55F1AA9EA494","b":"55F1A6EAF000","o":"3B3B494","s":"_ZN5mongo11mongod_mainEiPPc","C":"mongo::mongod_main(int, char**)","s+":"D84"},{"a":"55F1AA9E28B5","b":"55F1A6EAF000","o":"3B338B5","s":"main","s+":"C"},{"a":"7F1D357B1D90","b":"7F1D35788000","o":"29D90","s":"__libc_init_first","s+":"90"},{"a":"7F1D357B1E40","b":"7F1D35788000","o":"29E40","s":"__libc_start_main","s+":"80"},{"a":"55F1AA9E27E5","b":"55F1A6EAF000","o":"3B337E5","s":"_start","s+":"25"}],"processInfo":{"mongodbVersion":"7.0.21","gitVersion":"a47b62aff2bae1914085c3ef1d90fc099acf000c","compiledModules":[],"uname":{"sysname":"Linux","release":"5.10.102.1-microsoft-standard-WSL2","version":"#1 SMP Wed Mar 2 00:30:59 UTC 2022","machine":"x86_64"},"somap":[{"b":"55F1A6EAF000","elfType":3,"buildId":"B5594B981A707D5C"},{"b":"7F1D35788000","path":"/lib/x86_64-linux-gnu/libc.so.6","elfType":3,"buildId":"D5197096F709801829B118AF1B7CF6631EFA2DCD"}]}}},"tags":[]}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AEA13E08","b":"55F1A6EAF000","o":"7B64E08","s":"_ZN5mongo15printStackTraceEv","C":"mongo::printStackTrace()","s+":"38"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AEA0EDFB","b":"55F1A6EAF000","o":"7B5FDFB","s":"_ZN5mongo12_GLOBAL__N_111myTerminateEv","C":"mongo::(anonymous namespace)::myTerminate()","s+":"DB"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AEBB6BFA","b":"55F1A6EAF000","o":"7D07BFA","s":"_ZN10__cxxabiv111__terminateEPFvvE","C":"__cxxabiv1::__terminate(void (*)())","s+":"A"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AEBB6C65","b":"55F1A6EAF000","o":"7D07C65","s":"_ZSt9terminatev","C":"std::terminate()","s+":"15"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AEBB6DB9","b":"55F1A6EAF000","o":"7D07DB9","s":"__cxa_throw","s+":"49"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AEC3CB25","b":"55F1A6EAF000","o":"7D8DB25","s":"_ZSt20__throw_system_errori","C":"std::__throw_system_error(int)","s+":"88"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AEC3CD9D","b":"55F1A6EAF000","o":"7D8DD9D","s":"_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE","C":"std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)())","s+":"2D"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1ABB4DB1C","b":"55F1A6EAF000","o":"4C9EB1C","s":"_ZN5mongo27startSignalProcessingThreadENS_13LogFileStatusE","C":"mongo::startSignalProcessingThread(mongo::LogFileStatus)","s+":"11C"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AA9EA494","b":"55F1A6EAF000","o":"3B3B494","s":"_ZN5mongo11mongod_mainEiPPc","C":"mongo::mongod_main(int, char**)","s+":"D84"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AA9E28B5","b":"55F1A6EAF000","o":"3B338B5","s":"main","s+":"C"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"7F1D357B1D90","b":"7F1D35788000","o":"29D90","s":"__libc_init_first","s+":"90"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"7F1D357B1E40","b":"7F1D35788000","o":"29E40","s":"__libc_start_main","s+":"80"}}}
++{"t":{"$date":"2025-06-12T14:44:51.297+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"55F1AA9E27E5","b":"55F1A6EAF000","o":"3B337E5","s":"_start","s+":"25"}}}
++
++{"t":{"$date":"2025-06-12T14:45:02.793+00:00"},"s":"I",  "c":"CONTROL",  "id":20698,   "ctx":"main","msg":"***** SERVER RESTARTED *****"}
++{"t":{"$date":"2025-06-12T14:45:02.794+00:00"},"s":"I",  "c":"CONTROL",  "id":23285,   "ctx":"main","msg":"Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'"}
++{"t":{"$date":"2025-06-12T14:45:02.794+00:00"},"s":"I",  "c":"NETWORK",  "id":4915701, "ctx":"main","msg":"Initialized wire specification","attr":{"spec":{"incomingExternalClient":{"minWireVersion":0,"maxWireVersion":21},"incomingInternalClient":{"minWireVersion":0,"maxWireVersion":21},"outgoing":{"minWireVersion":6,"maxWireVersion":21},"isInternalClient":true}}}
++{"t":{"$date":"2025-06-12T14:45:02.796+00:00"},"s":"I",  "c":"NETWORK",  "id":4648601, "ctx":"main","msg":"Implicit TCP FastOpen unavailable. If TCP FastOpen is required, set tcpFastOpenServer, tcpFastOpenClient, and tcpFastOpenQueueSize."}
++{"t":{"$date":"2025-06-12T14:45:02.797+00:00"},"s":"I",  "c":"REPL",     "id":5123008, "ctx":"main","msg":"Successfully registered PrimaryOnlyService","attr":{"service":"TenantMigrationDonorService","namespace":"config.tenantMigrationDonors"}}
++{"t":{"$date":"2025-06-12T14:45:02.797+00:00"},"s":"I",  "c":"REPL",     "id":5123008, "ctx":"main","msg":"Successfully registered PrimaryOnlyService","attr":{"service":"TenantMigrationRecipientService","namespace":"config.tenantMigrationRecipients"}}
++{"t":{"$date":"2025-06-12T14:45:02.797+00:00"},"s":"I",  "c":"CONTROL",  "id":5945603, "ctx":"main","msg":"Multi threading initialized"}
++{"t":{"$date":"2025-06-12T14:45:02.797+00:00"},"s":"F",  "c":"CONTROL",  "id":6384300, "ctx":"main","msg":"Writing fatal message","attr":{"message":"terminate() called. An exception is active; attempting to gather more information\n"}}
++{"t":{"$date":"2025-06-12T14:45:02.797+00:00"},"s":"F",  "c":"CONTROL",  "id":6384300, "ctx":"main","msg":"Writing fatal message","attr":{"message":"std::exception::what(): Operation not permitted\nActual exception type: std::system_error\n\n"}}
++{"t":{"$date":"2025-06-12T14:45:02.797+00:00"},"s":"F",  "c":"CONTROL",  "id":6384300, "ctx":"main","msg":"Writing fatal message","attr":{"message":"\n"}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31380,   "ctx":"main","msg":"BACKTRACE","attr":{"bt":{"backtrace":[{"a":"56338FF35E08","b":"5633883D1000","o":"7B64E08","s":"_ZN5mongo15printStackTraceEv","C":"mongo::printStackTrace()","s+":"38"},{"a":"56338FF30DFB","b":"5633883D1000","o":"7B5FDFB","s":"_ZN5mongo12_GLOBAL__N_111myTerminateEv","C":"mongo::(anonymous namespace)::myTerminate()","s+":"DB"},{"a":"5633900D8BFA","b":"5633883D1000","o":"7D07BFA","s":"_ZN10__cxxabiv111__terminateEPFvvE","C":"__cxxabiv1::__terminate(void (*)())","s+":"A"},{"a":"5633900D8C65","b":"5633883D1000","o":"7D07C65","s":"_ZSt9terminatev","C":"std::terminate()","s+":"15"},{"a":"5633900D8DB9","b":"5633883D1000","o":"7D07DB9","s":"__cxa_throw","s+":"49"},{"a":"56339015EB25","b":"5633883D1000","o":"7D8DB25","s":"_ZSt20__throw_system_errori","C":"std::__throw_system_error(int)","s+":"88"},{"a":"56339015ED9D","b":"5633883D1000","o":"7D8DD9D","s":"_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE","C":"std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)())","s+":"2D"},{"a":"56338D06FB1C","b":"5633883D1000","o":"4C9EB1C","s":"_ZN5mongo27startSignalProcessingThreadENS_13LogFileStatusE","C":"mongo::startSignalProcessingThread(mongo::LogFileStatus)","s+":"11C"},{"a":"56338BF0C494","b":"5633883D1000","o":"3B3B494","s":"_ZN5mongo11mongod_mainEiPPc","C":"mongo::mongod_main(int, char**)","s+":"D84"},{"a":"56338BF048B5","b":"5633883D1000","o":"3B338B5","s":"main","s+":"C"},{"a":"7F048AB94D90","b":"7F048AB6B000","o":"29D90","s":"__libc_init_first","s+":"90"},{"a":"7F048AB94E40","b":"7F048AB6B000","o":"29E40","s":"__libc_start_main","s+":"80"},{"a":"56338BF047E5","b":"5633883D1000","o":"3B337E5","s":"_start","s+":"25"}],"processInfo":{"mongodbVersion":"7.0.21","gitVersion":"a47b62aff2bae1914085c3ef1d90fc099acf000c","compiledModules":[],"uname":{"sysname":"Linux","release":"5.10.102.1-microsoft-standard-WSL2","version":"#1 SMP Wed Mar 2 00:30:59 UTC 2022","machine":"x86_64"},"somap":[{"b":"5633883D1000","elfType":3,"buildId":"B5594B981A707D5C"},{"b":"7F048AB6B000","path":"/lib/x86_64-linux-gnu/libc.so.6","elfType":3,"buildId":"D5197096F709801829B118AF1B7CF6631EFA2DCD"}]}}},"tags":[]}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56338FF35E08","b":"5633883D1000","o":"7B64E08","s":"_ZN5mongo15printStackTraceEv","C":"mongo::printStackTrace()","s+":"38"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56338FF30DFB","b":"5633883D1000","o":"7B5FDFB","s":"_ZN5mongo12_GLOBAL__N_111myTerminateEv","C":"mongo::(anonymous namespace)::myTerminate()","s+":"DB"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"5633900D8BFA","b":"5633883D1000","o":"7D07BFA","s":"_ZN10__cxxabiv111__terminateEPFvvE","C":"__cxxabiv1::__terminate(void (*)())","s+":"A"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"5633900D8C65","b":"5633883D1000","o":"7D07C65","s":"_ZSt9terminatev","C":"std::terminate()","s+":"15"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"5633900D8DB9","b":"5633883D1000","o":"7D07DB9","s":"__cxa_throw","s+":"49"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56339015EB25","b":"5633883D1000","o":"7D8DB25","s":"_ZSt20__throw_system_errori","C":"std::__throw_system_error(int)","s+":"88"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56339015ED9D","b":"5633883D1000","o":"7D8DD9D","s":"_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE","C":"std::thread::_M_start_thread(std::unique_ptr<std::thread::_State, std::default_delete<std::thread::_State> >, void (*)())","s+":"2D"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56338D06FB1C","b":"5633883D1000","o":"4C9EB1C","s":"_ZN5mongo27startSignalProcessingThreadENS_13LogFileStatusE","C":"mongo::startSignalProcessingThread(mongo::LogFileStatus)","s+":"11C"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56338BF0C494","b":"5633883D1000","o":"3B3B494","s":"_ZN5mongo11mongod_mainEiPPc","C":"mongo::mongod_main(int, char**)","s+":"D84"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56338BF048B5","b":"5633883D1000","o":"3B338B5","s":"main","s+":"C"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"7F048AB94D90","b":"7F048AB6B000","o":"29D90","s":"__libc_init_first","s+":"90"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"7F048AB94E40","b":"7F048AB6B000","o":"29E40","s":"__libc_start_main","s+":"80"}}}
++{"t":{"$date":"2025-06-12T14:45:02.825+00:00"},"s":"I",  "c":"CONTROL",  "id":31445,   "ctx":"main","msg":"Frame","attr":{"frame":{"a":"56338BF047E5","b":"5633883D1000","o":"3B337E5","s":"_start","s+":"25"}}}
+Index: infrastructure/mongo/mongo_user/mongo_user_backup.sh
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/infrastructure/mongo/mongo_user/mongo_user_backup.sh b/infrastructure/mongo/mongo_user/mongo_user_backup.sh
+new file mode 100644
+--- /dev/null	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
++++ b/infrastructure/mongo/mongo_user/mongo_user_backup.sh	(revision 867bfa3ce821dafda178711e708b052d83545fd3)
+@@ -0,0 +1,13 @@
++#!/bin/bash
++
++while true; do
++  sleep 3600
++  TIMESTAMP=$(date +%Y-%m-%d_%H-%M-%S)
++  echo "⏳ Dumping at $TIMESTAMP"
++  mongodump --host=mongo_user \
++            --username="$MONGO_INITDB_ROOT_USERNAME" \
++            --password="$MONGO_INITDB_ROOT_PASSWORD" \
++            --authenticationDatabase=admin \
++            --db=service_a_db \
++            --out=/backup/$TIMESTAMP
++done
