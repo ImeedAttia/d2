@@ -5,7 +5,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=service_a_db
+      - MONGO_INITDB_DATABASE=${MONGO_USER_DATABASE}
     ports:
       - '${MONGO_USER_PORT}:27017'
     volumes:
@@ -26,7 +26,7 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_INITDB_DATABASE=service_b_db
+      - MONGO_INITDB_DATABASE=${MONGO_RIDE_DATABASE}
     ports:
       - '${MONGO_RIDE_PORT}:27017'
     volumes:
@@ -46,6 +46,7 @@ services:
     container_name: mongo_user_backup
     depends_on:
       - mongo_user
+      - mongo_ride
     volumes:
       - ./backup/mongo_user:/backup
       - ./mongo_user/mongo_user_backup.sh:/scripts/mongo_user_backup.sh
@@ -88,19 +89,30 @@ services:
       - "6379:6379"
     networks:
       - backend
+    volumes:
+      - redis_data:/data
+    command: redis-server --save 60 1 --loglevel warning
     healthcheck:
       test: [ "CMD", "redis-cli", "ping" ]
       interval: 30s
       timeout: 10s
       retries: 3
+      start_period: 5s
 
   redisinsight:
-    image: redis/redisinsight:latest
+    image: redislabs/redisinsight:1.14.0
     container_name: redisinsight
     ports:
-      - "8001:8001"
+      - "8002:8001"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      redis:
+        condition: service_healthy
     networks:
       - backend
+
 
   mongo-express-a:
     image: mongo-express
@@ -177,8 +189,22 @@ services:
     networks:
       - backend
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${MONGO_PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${MONGO_PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin  # ✅ persist connection settings
+    depends_on:
+      - postgres
+    networks:
+      - backend
+
   backup_test_scheduler:
-    profiles: [ "backup-tests" ]
     build:
       context: ./
       dockerfile: ./cronjobs/Dockerfile
@@ -196,10 +222,30 @@ services:
     networks:
       - backend
 
+  web-dashboard:
+    build:
+      context: ./docs/web
+    container_name: web_dashboard
+    ports:
+      - "4100:4100"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./Makefile:/app/Makefile
+      - ./.env:/app/.env
+    depends_on:
+      - mongo-express-a
+      - mongo-express-b
+      - pgadmin
+    networks:
+      - backend
+
 volumes:
   mongo_user_data:
   mongo_ride_data:
   pgdata:
+  pgadmin_data:
+  redis_data:
+  redisinsight_data:
 
 networks:
   backend:

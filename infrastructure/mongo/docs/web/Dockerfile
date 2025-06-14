@@ -1,12 +1,15 @@
-FROM debian:bullseye-slim
+FROM python:3.11-slim
 
-# Install required dependencies
+WORKDIR /app
+
+# Install all needed tools (bash, make, Docker CLI, PostgreSQL client, redis-tools, cron)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
+        make \
         bash \
         curl \
         git \
-        make \
+        docker.io \
         ca-certificates \
         postgresql-client \
         redis-tools \
@@ -20,12 +23,10 @@ RUN curl -L https://downloads.mongodb.com/compass/mongosh-2.0.2-linux-x64.tgz -o
     chmod +x /usr/local/bin/mongosh && \
     rm -rf /tmp/mongosh*
 
-# Setup working directory
-WORKDIR /app
+COPY . .
 
-COPY ./test /app/test
-COPY ./cronjobs/crontab.txt /etc/crontabs/root
-COPY ../../Makefile /app/Makefile
-COPY ../../.env /app/.env
+RUN pip install flask
 
-CMD /bin/bash -c "make test-backup && cron -f"
+EXPOSE 4100
+
+CMD ["python", "server.py"]

@@ -77,4 +77,10 @@ redis-cli -h redis GET test_key
 echo "🎉 All integration tests completed successfully!"
 echo "✅ Backup & Restore Integration Test completed successfully!"
 echo "🎉 $(date) - ✅ Backup & Restore Integration Test completed successfully!"
-exit 0
+echo "🛑 Shutting down test containers..."
+docker down
+echo "🗑️ Cleaning up logs..."
+rm -rf logs
+echo "🗑️ Logs cleaned up."
+exist 0
+
