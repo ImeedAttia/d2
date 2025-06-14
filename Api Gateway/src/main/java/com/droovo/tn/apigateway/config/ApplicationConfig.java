@@ -1,8 +1,5 @@
-package com.droovo.tn.usermessagingservice.config;
+package com.droovo.tn.apigateway.config;
 
-import com.droovo.tn.usermessagingservice.Entites.Enum.TypeUser;
-import com.droovo.tn.usermessagingservice.Entites.UserDetail;
-import com.droovo.tn.usermessagingservice.Repositories.UserDetailRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,18 +17,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
     private final UserDetailRepository userDetailRepository;
 
+
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> {
-            UserDetail user = userDetailRepository.findByEmail(username)
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-
-            return org.springframework.security.core.userdetails.User.builder()
-                    .username(user.getEmail())
-                    .password(user.getPassword())
-                    .roles(TypeUser.USER.name()) // or user.getType().name() if roles are dynamic
-                    .build();
-        };
+        return username -> userDetailRepository.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
     @Bean
     public AuthenticationProvider authenticationProvider() {
