@@ -79,8 +79,8 @@ echo "✅ Backup & Restore Integration Test completed successfully!"
 echo "🎉 $(date) - ✅ Backup & Restore Integration Test completed successfully!"
 echo "🛑 Shutting down test containers..."
 docker down
-echo "🗑️ Cleaning up logs..."
-rm -rf logs
-echo "🗑️ Logs cleaned up."
+#echo "🗑️ Cleaning up logs..."
+#rm -rf logs
+#echo "🗑️ Logs cleaned up."
 exist 0
 

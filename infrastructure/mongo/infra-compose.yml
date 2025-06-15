@@ -48,7 +48,7 @@ services:
       - mongo_user
       - mongo_ride
     volumes:
-      - ./backup/mongo_user:/backup
+      - ./backup:/backup
       - ./mongo_user/mongo_user_backup.sh:/scripts/mongo_user_backup.sh
     entrypoint: [ "bash", "/scripts/mongo_user_backup.sh" ]
     env_file:
@@ -62,7 +62,7 @@ services:
     depends_on:
       - mongo_ride
     volumes:
-      - ./backup/mongo_ride:/backup
+      - ./backup:/backup
       - ./mongo_ride/mongo_ride_backup.sh:/scripts/mongo_ride_backup.sh
     entrypoint: [ "bash", "/scripts/mongo_ride_backup.sh" ]
     env_file:
@@ -73,6 +73,9 @@ services:
   mongo_restore:
     image: mongo
     container_name: mongo_restore
+    depends_on:
+      - mongo_ride_backup
+      - mongo_user_backup
     volumes:
       - ./backup:/restore
       - ./backup/restore.sh:/scripts/restore.sh

@@ -12,7 +12,7 @@ backup: backup_mongo_user backup_mongo_ride
 # Backup mongo_user
 backup_mongo_user:
 	@echo "🔁 Backing up mongo_user..."
-	docker compose run mongo_user_backup
+	docker-compose run mongo_user_backup
 
 # Backup mongo_ride
 backup_mongo_ride:
