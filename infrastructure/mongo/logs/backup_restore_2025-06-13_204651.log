@@ -1,3 +1,0 @@
-⏱️  Fri Jun 13 20:46:51 UTC 2025 - 🚀 Starting Backup & Restore Integration Test
-📥 Inserting dummy data into mongo_user_service...
-./test/verify_backup_restore.sh: line 18: mongosh: command not found

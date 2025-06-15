@@ -1,5 +1,0 @@
-⏱️  Sat Jun 14 01:54:35 UTC 2025 - 🚀 Starting Backup & Restore Integration Test
-📥 Inserting dummy data into mongo_user_service...
-Current Mongosh Log ID:	684cd65d9d44ba004627f777
-Connecting to:		mongodb://<credentials>@mongo_user:27017/mongo_user_service?authSource=admin&directConnection=true&appName=mongosh+2.0.2
-MongoNetworkError: connect ECONNREFUSED 172.18.0.6:27017

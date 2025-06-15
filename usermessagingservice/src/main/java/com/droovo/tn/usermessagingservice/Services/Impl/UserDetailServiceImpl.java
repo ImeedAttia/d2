@@ -16,8 +16,6 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserDetailServiceImpl implements UserDetailService {
     private final UserDetailRepository userDetailRepository;
-    PasswordEncoder passwordEncoder;
-
     @Override
     public UserDetail saveUserDetail(UserDetail userDetail) {
         return userDetailRepository.save(userDetail);
@@ -48,7 +46,7 @@ public class UserDetailServiceImpl implements UserDetailService {
             existingUserDetail.setDisplayName(userDetail.getDisplayName());
             existingUserDetail.setEmail(userDetail.getEmail());
             existingUserDetail.setPhotoURL(userDetail.getPhotoURL());
-            existingUserDetail.setPassword(passwordEncoder.encode(existingUserDetail.getPassword()));
+            existingUserDetail.setPassword(existingUserDetail.getPassword());
             existingUserDetail.setType(userDetail.getType());
             existingUserDetail.setStatus(userDetail.isStatus());
 
