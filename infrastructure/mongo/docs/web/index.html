@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo Infrastructure Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 p-6">
+<div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">✨ Mongo Infrastructure Dashboard</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-semibold mb-4">Mongo User Interface</h2>
+            <a href="http://localhost:8081" target="_blank" class="text-blue-600 hover:underline">Mongo Express A (mongo_user)</a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-semibold mb-4">Mongo Ride Interface</h2>
+            <a href="http://localhost:8082" target="_blank" class="text-blue-600 hover:underline">Mongo Express B (mongo_ride)</a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-semibold mb-4">Redis Insight</h2>
+            <a href="http://localhost:8002" target="_blank" class="text-blue-600 hover:underline">RedisInsight Dashboard</a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-semibold mb-4">PgAdmin (PostgreSQL)</h2>
+            <a href="http://localhost:5050" target="_blank" class="text-blue-600 hover:underline">PgAdmin Panel</a>
+            <div class="mt-4 space-y-2">
+                <button onclick="runMake(this, 'pgadmin-backup')" class="bg-gray-700 text-white w-44 h-10 rounded hover:bg-gray-800 relative">
+                    <span class="loader hidden absolute inset-0 m-auto w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    <span class="btn-text">Save PgAdmin Backup</span>
+                </button>
+                <button onclick="runMake(this, 'pgadmin-restore')" class="bg-gray-500 text-white w-44 h-10 rounded hover:bg-gray-600 relative">
+                    <span class="loader hidden absolute inset-0 m-auto w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    <span class="btn-text">Restore PgAdmin Backup</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow p-6">
+            <h2 class="text-xl font-semibold mb-4">Makefile Operations</h2>
+            <div class="space-y-2">
+                <button onclick="runMake(this, 'backup')" class="bg-green-600 text-white w-44 h-10 rounded hover:bg-green-700 relative">
+                    <span class="loader hidden absolute inset-0 m-auto w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    <span class="btn-text">Run All Backups</span>
+                </button>
+                <button onclick="runMake(this, 'restore')" class="bg-yellow-500 text-white w-44 h-10 rounded hover:bg-yellow-600 relative">
+                    <span class="loader hidden absolute inset-0 m-auto w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    <span class="btn-text">Restore Backups</span>
+                </button>
+                <button onclick="runMake(this, 'test-backup')" class="bg-blue-600 text-white w-44 h-10 rounded hover:bg-blue-700 relative">
+                    <span class="loader hidden absolute inset-0 m-auto w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                    <span class="btn-text">Run Backup Test</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="output" class="mt-10 bg-white p-4 rounded shadow hidden">
+        <h2 class="text-lg font-bold mb-2">🔍 Command Output</h2>
+        <pre id="consoleOutput" class="text-sm text-gray-800 whitespace-pre-wrap"></pre>
+    </div>
+</div>
+
+<script>
+    function runMake(button, target) {
+        const loader = button.querySelector('.loader');
+        const btnText = button.querySelector('.btn-text');
+        loader.classList.remove('hidden');
+        btnText.classList.add('hidden');
+        button.disabled = true;
+
+        document.getElementById('output').classList.remove('hidden');
+        const output = document.getElementById('consoleOutput');
+        output.textContent = '';
+
+        const eventSource = new EventSource(`http://localhost:4100/stream-make/${target}`);
+
+        eventSource.onmessage = function (event) {
+            output.textContent += event.data + '\n';
+            output.scrollTop = output.scrollHeight;
+        };
+
+        function stopLoader() {
+            eventSource.close();
+            loader.classList.add('hidden');
+            btnText.classList.remove('hidden');
+            button.disabled = false;
+        }
+
+        eventSource.onerror = stopLoader;
+        eventSource.addEventListener("end", stopLoader);
+    }
+</script>
+</body>
+</html>

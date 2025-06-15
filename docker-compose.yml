@@ -1,0 +1,11 @@
+services:
+  # Include postgres explicitly here again
+  postgres:
+    extends:
+      file: ./infrastructure/mongo/infra-compose.yml
+      service: postgres
+
+  keycloak:
+    extends:
+      file: keycloak-compose.yml
+      service: keycloak

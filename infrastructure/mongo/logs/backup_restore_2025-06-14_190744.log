@@ -1,0 +1,115 @@
+⏱️  Sat Jun 14 19:07:44 UTC 2025 - 🚀 Starting Backup & Restore Integration Test
+📥 Inserting dummy data into mongo_user_service...
+Current Mongosh Log ID:	684dc881dc7fa871b8c02a8d
+Connecting to:		mongodb://<credentials>@mongo_user:27017/mongo_user_service?authSource=admin&directConnection=true&appName=mongosh+2.0.2
+Using MongoDB:		7.0.21
+Using Mongosh:		2.0.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-06-14T19:02:43.302+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2025-06-14T19:02:45.399+00:00: vm.max_map_count is too low
+------
+
+{
+  acknowledged: true,
+  insertedId: ObjectId("684dc881dc7fa871b8c02a8e")
+}
+📥 Inserting dummy data into mongo_ride_service...
+Current Mongosh Log ID:	684dc882ce838c769767998f
+Connecting to:		mongodb://<credentials>@mongo_ride:27017/mongo_ride_service?authSource=admin&directConnection=true&appName=mongosh+2.0.2
+Using MongoDB:		7.0.21
+Using Mongosh:		2.0.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-06-14T19:02:43.291+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2025-06-14T19:02:45.818+00:00: vm.max_map_count is too low
+------
+
+{
+  acknowledged: true,
+  insertedId: ObjectId("684dc882ce838c7697679990")
+}
+💾 Assuming mongo backups are triggered externally or automatically...
+🔥 Deleting inserted mongo test data...
+Current Mongosh Log ID:	684dc8834fd189d2dac2a54b
+Connecting to:		mongodb://<credentials>@mongo_user:27017/mongo_user_service?authSource=admin&directConnection=true&appName=mongosh+2.0.2
+Using MongoDB:		7.0.21
+Using Mongosh:		2.0.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-06-14T19:02:43.302+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2025-06-14T19:02:45.399+00:00: vm.max_map_count is too low
+------
+
+{ acknowledged: true, deletedCount: 1 }
+Current Mongosh Log ID:	684dc884bdc989f230d11669
+Connecting to:		mongodb://<credentials>@mongo_ride:27017/mongo_ride_service?authSource=admin&directConnection=true&appName=mongosh+2.0.2
+Using MongoDB:		7.0.21
+Using Mongosh:		2.0.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-06-14T19:02:43.291+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2025-06-14T19:02:45.818+00:00: vm.max_map_count is too low
+------
+
+{ acknowledged: true, deletedCount: 1 }
+♻️ Assuming restore is triggered externally...
+🔍 Verifying mongo restore...
+Current Mongosh Log ID:	684dc885e7ff475aae9c9086
+Connecting to:		mongodb://<credentials>@mongo_user:27017/mongo_user_service?authSource=admin&directConnection=true&appName=mongosh+2.0.2
+Using MongoDB:		7.0.21
+Using Mongosh:		2.0.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-06-14T19:02:43.302+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2025-06-14T19:02:45.399+00:00: vm.max_map_count is too low
+------
+
+✅ mongo_user_service restore:
+null
+Current Mongosh Log ID:	684dc886675fe26f91f9a965
+Connecting to:		mongodb://<credentials>@mongo_ride:27017/mongo_ride_service?authSource=admin&directConnection=true&appName=mongosh+2.0.2
+Using MongoDB:		7.0.21
+Using Mongosh:		2.0.2
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-06-14T19:02:43.291+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2025-06-14T19:02:45.818+00:00: vm.max_map_count is too low
+------
+
+✅ mongo_ride_service restore:
+null
+📥 Creating test table & inserting row in PostgreSQL...
+NOTICE:  table "test" does not exist, skipping
+INSERT 0 1
+🔍 Querying inserted row in PostgreSQL...
+ id |         name         
+----+----------------------
+  1 | postgres_backup_test
+(1 row)
+
+📥 Writing key to Redis...
+OK
+🔍 Reading key from Redis...
+redis_backup_test
+🎉 All integration tests completed successfully!
+✅ Backup & Restore Integration Test completed successfully!
+🎉 Sat Jun 14 19:07:50 UTC 2025 - ✅ Backup & Restore Integration Test completed successfully!

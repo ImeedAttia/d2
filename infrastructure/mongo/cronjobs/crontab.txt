@@ -1,0 +1,1 @@
+# This file is managed by Ansible. Do not edit manually.# Ansible managed: /etc/cron.d/mongo-cronjobs# Run daily backup at 2:30 AM30 2 * * * cd /app && make test-backup >> /app/logs/cronjob.log 2>&1

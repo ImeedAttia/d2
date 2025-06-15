@@ -25,7 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserDetail implements UserDetails {
+public class UserDetail {
 
     @Id
     String id;
@@ -47,39 +47,4 @@ public class UserDetail implements UserDetails {
     boolean accountStatus;
     TypeUser type;
     UserStatus userStatus;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(type.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true; // Add logic if needed
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true; // Add logic if needed
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true; // Add logic if needed
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true; // Could use `status` or `accountStatus` for logic
-    }
 }
