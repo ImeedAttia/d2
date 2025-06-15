@@ -14,6 +14,18 @@ The services are decoupled, independently deployable, and communicate over REST 
 
 ---
 
+## 🚀 ports
+
+| Service Name          | Port | Status |
+| --------------------- | ---- | ------ |
+| Shared                | 8090 | ✅ Working |
+| RideService          | 8092 | ✅ Working |
+| UserMessagingService | 8091 | ✅ Working |
+| keycloak           | 8093 | ✅ Working |
+| api gateway           | 8094 | ✅ Working |
+| service discovery | 8095 | ✅ Working |
+| config server | 8096 | ✅ Working |
+
 ## 🚀 Services Overview
 
 ### 0. 📦 Shared
