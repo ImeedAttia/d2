@@ -1,5 +1,6 @@
 services:
   # Include postgres explicitly here again
+  # docker-compose -f infrastructure/mongo/infra-compose.yml -f keycloak-compose.yml up --build
   postgres:
     extends:
       file: ./infrastructure/mongo/infra-compose.yml

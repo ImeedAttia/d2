@@ -15,7 +15,7 @@ echo "⏱️  $(date) - 🚀 Starting Backup & Restore Integration Test"
 ##################################
 
 echo "📥 Inserting dummy data into mongo_user_service..."
-mongosh "mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo_user:27017/${MONGO_USER_DATABASE}?authSource=admin" --eval '
+mongosh "mongodb://admin:pass@mongo_user:27017/${MONGO_USER_DATABASE}?authSource=admin" --eval '
 db.test.insertOne({ name: "backup_test_user" });
 '
 
