@@ -18,13 +18,19 @@ public class SecurityConfiguration {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(auth -> auth
-                        .pathMatchers("/v1/auth/**", "/actuator/**").permitAll()
-//                        .pathMatchers("/user/**", "/admin/**", "/api/**").authenticated()
+                        .pathMatchers(
+                                "/v1/auth/**",
+                                "/actuator/**",
+                                "/eureka/**",
+                                "/usermessagingservice/**",
+                                "/rideservice/**"
+                        ).permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(Customizer.withDefaults())
                 )
-                .build();
+                .oauth2Client(Customizer.withDefaults())
+        .build();
     }
 }

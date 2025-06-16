@@ -5,32 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4fc00fc4-5e73-4bc4-95c8-05a7fa03884b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_13-54-18/mongo_user_service/prelude.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_13-54-18/mongo_user_service/test.bson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_13-54-18/mongo_user_service/test.metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_13-54-18/mongo_user_service/users.bson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_13-54-18/mongo_user_service/users.metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-06-03/mongo_user_service/prelude.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-06-03/mongo_user_service/test.bson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-06-03/mongo_user_service/test.metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-06-03/mongo_user_service/users.bson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-06-03/mongo_user_service/users.metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-16-36/mongo_user_service/prelude.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-16-36/mongo_user_service/test.bson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-16-36/mongo_user_service/test.metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-16-36/mongo_user_service/users.bson" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_14-16-36/mongo_user_service/users.metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_ride/2025-06-15_17-16-35/mongo_ride_service/prelude.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_ride/2025-06-15_17-16-35/mongo_ride_service/test.bson" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_ride/2025-06-15_17-16-35/mongo_ride_service/test.metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_21-57-04/mongo_user_service/prelude.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_21-57-04/mongo_user_service/test.bson" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_21-57-04/mongo_user_service/test.metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_21-57-04/mongo_user_service/users.bson" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/mongo_user/2025-06-15_21-57-04/mongo_user_service/users.metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../infrastructure/mongo/logs/backup_restore_2025-06-15_215704.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/ApiGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/Entites/Auth/AuthenticationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/Entites/Auth/AuthenticationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/Entites/Auth/ForgotPasswordRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/Entites/Auth/RegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/Entites/Enum/TypeUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/Entites/Enum/UserStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/Entites/UserDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/droovo/tn/apigateway/config/SecurityConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/backup/restore.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/restore.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/ApiGatewayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/ApiGatewayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/AuthenticationRequest$AuthenticationRequestBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/AuthenticationRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/AuthenticationResponse$AuthenticationResponseBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/AuthenticationResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/ForgotPasswordRequest$ForgotPasswordRequestBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/ForgotPasswordRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/RegisterRequest$RegisterRequestBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Auth/RegisterRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Enum/TypeUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/Enum/UserStatus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/UserDetail$UserDetailBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/Entites/UserDetail.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/config/SecurityConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/droovo/tn/apigateway/config/SecurityConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/backup/latest/mongo_user/test.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/latest/mongo_user/test.metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/backup/latest/mongo_user/users.metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/backup/latest/mongo_user/users.metadata.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/docs/web/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/docs/web/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/docs/web/test/verify_backup_restore.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/docs/web/test/verify_backup_restore.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/infra-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/infra-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/mongo_ride/mongo_ride_backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/mongo_ride/mongo_ride_backup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../infrastructure/mongo/mongo_user/mongo_user_backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../infrastructure/mongo/mongo_user/mongo_user_backup.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../usermessagingservice/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../usermessagingservice/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../usermessagingservice/src/main/java/com/droovo/tn/usermessagingservice/Controller/UserDetailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../usermessagingservice/src/main/java/com/droovo/tn/usermessagingservice/Controller/UserDetailController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../usermessagingservice/src/main/java/com/droovo/tn/usermessagingservice/config/SecurityConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/../usermessagingservice/src/main/java/com/droovo/tn/usermessagingservice/config/SecurityConfiguration.java" afterDir="false" />
@@ -74,27 +89,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/imeda/IdeaProjects/droovo-backend/Api Gateway/src/main/java/com/droovo/tn/apigateway",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.ApiGateway [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.ApiGateway [install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/imeda/IdeaProjects/droovo-backend/Api Gateway/src/main/java/com/droovo/tn/apigateway&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\imeda\IdeaProjects\droovo-backend\Api Gateway\src\main\java\com\droovo\tn\apigateway" />
@@ -148,7 +165,8 @@
       <workItem from="1749895447651" duration="812000" />
       <workItem from="1749896280034" duration="5405000" />
       <workItem from="1749924437239" duration="7594000" />
-      <workItem from="1749994686144" duration="1738000" />
+      <workItem from="1749994686144" duration="10688000" />
+      <workItem from="1750024316544" duration="5194000" />
     </task>
     <servers />
   </component>

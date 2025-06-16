@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("")
+@RequestMapping("/userdetails")
 @RequiredArgsConstructor
 @Slf4j(topic = "UserDetailController")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
