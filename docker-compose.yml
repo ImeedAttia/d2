@@ -1,12 +1,24 @@
 services:
-  # Include postgres explicitly here again
-  # docker-compose -f infrastructure/mongo/infra-compose.yml -f keycloak-compose.yml up --build
   postgres:
     extends:
       file: ./infrastructure/mongo/infra-compose.yml
-      service: postgres
+      service: infrastructure
 
   keycloak:
     extends:
       file: keycloak-compose.yml
       service: keycloak
+
+  kafka:
+    extends:
+      file: kafka-compose.yml
+      service: kafka
+
+  zookeeper:
+    extends:
+      file: kafka-compose.yml
+      service: zookeeper
+
+networks:
+  backend:
+    driver: bridge

@@ -16,15 +16,16 @@ The services are decoupled, independently deployable, and communicate over REST 
 
 ## 🚀 ports
 
-| Service Name          | Port | Status |
-| --------------------- |------| ------ |
-| api gateway           | 8090 | ✅ Working |
+| Service Name         | Port | Status |
+|----------------------|------| ------ |
+| api gateway          | 8090 | ✅ Working |
 | UserMessagingService | 8091 | ✅ Working |
 | RideService          | 8092 | ✅ Working |
-| keycloak           | 8093 | ✅ Working |
-| Shared                | 8094 | ✅ Working |
-| service discovery | 8095 | ✅ Working |
-| config server | 8096 | ✅ Working |
+| keycloak             | 8093 | ✅ Working |
+| Shared               | 8094 | ✅ Working |
+| service discovery    | 8095 | ✅ Working |
+| config server        | 8096 | ✅ Working |
+| kafka                | 8097 | ✅ Working |
 
 ## 🚀 Services Overview
 

@@ -1,29 +1,33 @@
 package com.droovo.tn.apigateway.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.oauth2.jwt.NimbusReactiveJwtDecoder;
+import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
 @EnableWebFluxSecurity
 @EnableMethodSecurity
 public class SecurityConfiguration {
+    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+    private String jwkSetUri;
 
+    @RefreshScope
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(auth -> auth
                         .pathMatchers(
-                                "/v1/auth/**",
                                 "/actuator/**",
-                                "/eureka/**",
-                                "/usermessagingservice/**",
-                                "/rideservice/**"
+                                "/eureka/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
@@ -32,5 +36,11 @@ public class SecurityConfiguration {
                 )
                 .oauth2Client(Customizer.withDefaults())
         .build();
+    }
+
+    @RefreshScope
+    @Bean
+    public ReactiveJwtDecoder jwtDecoder() {
+        return NimbusReactiveJwtDecoder.withJwkSetUri(jwkSetUri).build();
     }
 }
