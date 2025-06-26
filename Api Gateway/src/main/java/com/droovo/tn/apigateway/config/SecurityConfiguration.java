@@ -19,7 +19,12 @@ public class SecurityConfiguration {
     @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
     private String jwkSetUri;
 
-    @RefreshScope
+    /**
+     * Configures the security filter chain for the API Gateway.
+     *
+     * @param http the ServerHttpSecurity object to configure
+     * @return the configured SecurityWebFilterChain
+     */
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
         return http

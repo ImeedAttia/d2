@@ -41,41 +41,42 @@ services:
       timeout: 10s
       retries: 3
 
-  mongo_user_backup:
-    image: mongo
-    container_name: mongo_user_backup
-    depends_on:
-      - mongo_user
-      - mongo_ride
-    volumes:
-      - ./backup:/backup
-      - ./mongo_user/mongo_user_backup.sh:/scripts/mongo_user_backup.sh
-    entrypoint: [ "bash", "/scripts/mongo_user_backup.sh" ]
-    env_file:
-      - .env
-    networks:
-      - backend
-
-  mongo_ride_backup:
-    image: mongo
-    container_name: mongo_ride_backup
-    depends_on:
-      - mongo_ride
-    volumes:
-      - ./backup:/backup
-      - ./mongo_ride/mongo_ride_backup.sh:/scripts/mongo_ride_backup.sh
-    entrypoint: [ "bash", "/scripts/mongo_ride_backup.sh" ]
-    env_file:
-      - .env
-    networks:
-      - backend
+#  mongo_user_backup:
+#    image: mongo
+#    container_name: mongo_user_backup
+#    depends_on:
+#      - mongo_user
+#      - mongo_ride
+#    volumes:
+#      - ./backup:/backup
+#      - ./mongo_user/mongo_user_backup.sh:/scripts/mongo_user_backup.sh
+#    entrypoint: [ "bash", "/scripts/mongo_user_backup.sh" ]
+#    env_file:
+#      - .env
+#    networks:
+#      - backend
+#
+#  mongo_ride_backup:
+#    image: mongo
+#    container_name: mongo_ride_backup
+#    depends_on:
+#      - mongo_ride
+#    volumes:
+#      - ./backup:/backup
+#      - ./mongo_ride/mongo_ride_backup.sh:/scripts/mongo_ride_backup.sh
+#    entrypoint: [ "bash", "/scripts/mongo_ride_backup.sh" ]
+#    env_file:
+#      - .env
+#    networks:
+#      - backend
 
   mongo_restore:
     image: mongo
     container_name: mongo_restore
     depends_on:
-      - mongo_ride_backup
-      - mongo_user_backup
+      - mongo_ride
+      - mongo_user
+#      - mongo_user_backup
     volumes:
       - ./backup:/restore
       - ./backup/restore.sh:/scripts/restore.sh

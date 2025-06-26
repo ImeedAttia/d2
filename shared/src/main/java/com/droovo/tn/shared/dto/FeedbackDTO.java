@@ -25,4 +25,8 @@ public record FeedbackDTO(
         String comment,
         RideDTO ride,
         Instant timestamp
-) {}
+) {
+    public FeedbackDTO() {
+        this("", "", 0, "", null, Instant.now());
+    }
+}

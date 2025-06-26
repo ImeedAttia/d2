@@ -17,5 +17,15 @@ public record LocationDetailsDTO(
         String street,
         String state,
         String country
-) {}
+) {
+    public LocationDetailsDTO() {
+        this("", "", "");
+    }
+
+    public LocationDetailsDTO(String street, String state, String country) {
+        this.street = street;
+        this.state = state;
+        this.country = country;
+    }
+}
 

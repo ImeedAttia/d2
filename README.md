@@ -26,6 +26,7 @@ The services are decoupled, independently deployable, and communicate over REST 
 | service discovery    | 8095 | ✅ Working |
 | config server        | 8096 | ✅ Working |
 | kafka                | 8097 | ✅ Working |
+| kafka ui             | 8098 | ✅ Working |
 
 ## 🚀 Services Overview
 

@@ -10,7 +10,7 @@ services:
       service: keycloak
 
   kafka:
-    extends:
+    extends:   
       file: kafka-compose.yml
       service: kafka
 
@@ -22,3 +22,7 @@ services:
 networks:
   backend:
     driver: bridge
+    
+
+#C:\Users\imeda\IdeaProjects\droovo-backend
+#docker-compose -f infrastructure/mongo/infra-compose.yml -f keycloak-compose.yml -f kafka-compose.yml up --build

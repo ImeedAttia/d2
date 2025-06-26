@@ -1,35 +1,51 @@
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.6.0
+    image: zookeeper:3.8.2
     container_name: zookeeper
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
+    environment:
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=zookeeper:2888:3888;2181
     networks:
-      - backend
+      - kafka-net
 
   kafka:
-    image: confluentinc/cp-kafka:7.6.0
+    image: bitnami/kafka:3.6
     container_name: kafka
     ports:
       - "9092:9092"
-      - "8097:8097" # For external access
+      - "9093:9093"  # Added for external listener
+    environment:
+      KAFKA_CFG_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:9093
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CFG_ZOOKEEPER_CONNECT: zookeeper:2181  # Removed trailing period
+      KAFKA_CFG_LISTENERS: PLAINTEXT://0.0.0.0:9092,EXTERNAL://0.0.0.0:9093  # Added EXTERNAL listener
+      ALLOW_PLAINTEXT_LISTENER: "yes"
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: PLAINTEXT  # Added for internal communication
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"  # Explicitly enable auto-creation
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1  # Required for single-node clusters
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_CFG_NUM_PARTITIONS: 3  # Default partitions for new topics
     depends_on:
       - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:8097
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:8097
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-    volumes:
-      - kafka_data:/var/lib/kafka/data
     networks:
-      - backend
+      - kafka-net
 
-volumes:
-  kafka_data:
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - "8098:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL: PLAINTEXT  # Added explicit protocol
+    depends_on:
+      - kafka
+    networks:
+      - kafka-net
+
+networks:
+  kafka-net:
+    driver: bridge

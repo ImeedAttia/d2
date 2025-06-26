@@ -26,4 +26,16 @@ public record SeatDTO(
         String reservedBy,
         LocalDateTime createdAt,
         LocalDateTime updatedAt
-) {}
+) {
+    public SeatDTO() {
+        this(0, SeatStatus.AVAILABLE, "", LocalDateTime.now(), LocalDateTime.now());
+    }
+
+    public SeatDTO(int uid, SeatStatus status, String reservedBy, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.uid = uid;
+        this.status = status;
+        this.reservedBy = reservedBy;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+}

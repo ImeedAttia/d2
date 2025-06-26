@@ -15,5 +15,14 @@ package com.droovo.tn.shared.dto;
 public record GeoPointDTO(
         double latitude,
         double longitude
-) {}
+) {
+    public GeoPointDTO() {
+        this(0.0, 0.0);
+    }
+
+    public GeoPointDTO(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+}
 

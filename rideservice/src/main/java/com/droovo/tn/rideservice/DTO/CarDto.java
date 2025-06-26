@@ -1,14 +1,5 @@
 package com.droovo.tn.rideservice.DTO;
 
-import com.droovo.tn.rideservice.Entities.Enum.CarStatus;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * CarDto is a Data Transfer Object representing a car entity.
@@ -19,10 +10,7 @@ import java.util.List;
  * <p>
  * Fields:
  * <ul>
- * <<<<<<< HEAD
- * =======
  *   <li>{@code uid} - Car manufacturer (e.g., Toyota, Ford).</li>
- * >>>>>>> rebuild
  *   <li>{@code brand} - Car manufacturer (e.g., Toyota, Ford).</li>
  *   <li>{@code model} - Specific model of the car.</li>
  *   <li>{@code description} - Optional description or details about the car.</li>

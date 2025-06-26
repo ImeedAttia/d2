@@ -62,4 +62,8 @@ public record RideDTO(
         Instant createdAt,
         Instant updatedAt
 ) {
+    public RideDTO() {
+        this("", "", List.of(), "", "", "", 0.0, 0, 0, Instant.now(), Instant.now(),
+                "", "", "", "", 0.0, 0.0, 0.0, 0.0, 0.0, "pending", Instant.now(), Instant.now());
+    }
 }

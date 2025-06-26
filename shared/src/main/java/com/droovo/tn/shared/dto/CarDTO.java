@@ -9,10 +9,7 @@ package com.droovo.tn.shared.dto;
  * <p>
  * Fields:
  * <ul>
- * <<<<<<< HEAD
- * =======
  *   <li>{@code uid} - Car manufacturer (e.g., Toyota, Ford).</li>
- * >>>>>>> rebuild
  *   <li>{@code brand} - Car manufacturer (e.g., Toyota, Ford).</li>
  *   <li>{@code model} - Specific model of the car.</li>
  *   <li>{@code description} - Optional description or details about the car.</li>

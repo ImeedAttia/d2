@@ -10,9 +10,9 @@ import java.util.List;
 
 @FeignClient(value = "userservice", url = "${user.service.url}",fallback = UserFallback.class)
 public interface UserClient {
-    @GetMapping("/users/{id}")
+    @GetMapping("/userdetails/{id}")
     UserDTO getUserById(@PathVariable("id") String carId);
 
-    @GetMapping("/users")
+    @GetMapping("/userdetails")
     List<UserDTO> getAllUsers();
 }

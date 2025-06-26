@@ -1,0 +1,5 @@
+⏱️  Thu Jun 26 12:28:17 UTC 2025 - 🚀 Starting Backup & Restore Integration Test
+📥 Inserting dummy data into mongo_user_service...
+Current Mongosh Log ID:	685d3ce20a5e55abb1dc4661
+Connecting to:		mongodb://<credentials>@mongo_user:27017/mongo_user_service?directConnection=true&appName=mongosh+2.0.2
+MongoServerError: Authentication failed.

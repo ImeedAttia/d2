@@ -29,4 +29,21 @@ public record RideTargetSourceLocationDTO(
         double distance,
         LocalDateTime createdAt,
         LocalDateTime updatedAt
-) {}
+) {
+    public RideTargetSourceLocationDTO() {
+        this(0, new LocationDetailsDTO(), new LocationDetailsDTO(), new GeoPointDTO(), new GeoPointDTO(), 0.0, LocalDateTime.now(), LocalDateTime.now());
+    }
+
+    public RideTargetSourceLocationDTO(int uid, LocationDetailsDTO pickupLocation, LocationDetailsDTO destinationLocation,
+                                       GeoPointDTO pickupGeoPoint, GeoPointDTO destinationGeoPoint, double distance,
+                                       LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.uid = uid;
+        this.pickupLocation = pickupLocation;
+        this.destinationLocation = destinationLocation;
+        this.pickupGeoPoint = pickupGeoPoint;
+        this.destinationGeoPoint = destinationGeoPoint;
+        this.distance = distance;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+}
