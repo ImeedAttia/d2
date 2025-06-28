@@ -15,7 +15,7 @@ services:
       service: kafka
 
   zookeeper:
-    extends:
+    extends:  
       file: kafka-compose.yml
       service: zookeeper
 

@@ -1,7 +1,7 @@
 package com.droovo.tn.rideservice.Exceptions;
 
-import com.droovo.tn.shared.exception.RideNotFoundException;
-import com.droovo.tn.shared.exception.RideServiceException;
+import com.droovo.tn.shared.exception.rideExceptions.RideNotFoundException;
+import com.droovo.tn.shared.exception.rideExceptions.RideServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

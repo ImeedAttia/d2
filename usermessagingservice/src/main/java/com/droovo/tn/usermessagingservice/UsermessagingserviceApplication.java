@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @EnableFeignClients
 @EnableDiscoveryClient
+//@EnableScheduling
 public class UsermessagingserviceApplication {
     public static void main(String[] args) {
         SpringApplication.run(UsermessagingserviceApplication.class, args);
