@@ -34,7 +34,8 @@ public record CarDto(
         int doors,
         boolean airConditioner,
         String image,
-        int possibleSeats
+        int possibleSeats,
+        UserDetail driver
 ) {
 }
 

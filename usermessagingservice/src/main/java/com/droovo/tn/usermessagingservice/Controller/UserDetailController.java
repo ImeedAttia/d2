@@ -21,7 +21,7 @@ import java.util.List;
 
 @RefreshScope
 @RestController
-@RequestMapping("/userdetails")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 @Slf4j(topic = "UserDetailController")
 @CrossOrigin(origins = "*", allowedHeaders = "*")

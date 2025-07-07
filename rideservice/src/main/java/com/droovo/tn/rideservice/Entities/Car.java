@@ -1,5 +1,6 @@
 package com.droovo.tn.rideservice.Entities;
 
+import com.droovo.tn.rideservice.DTO.UserDetail;
 import com.droovo.tn.rideservice.Entities.Enum.CarStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -44,5 +45,11 @@ public class Car {
     List<Rides> rides;
     LocalDateTime createdAt;
     LocalDateTime updatedAt;
+    String driver;
+    //in DTO we assing the User object
+
+    public static Car empty() {
+        return new Car();
+    }
 }
 

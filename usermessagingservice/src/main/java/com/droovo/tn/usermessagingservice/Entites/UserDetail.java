@@ -2,6 +2,7 @@ package com.droovo.tn.usermessagingservice.Entites;
 
 import com.droovo.tn.usermessagingservice.Entites.Enum.TypeUser;
 import com.droovo.tn.usermessagingservice.Entites.Enum.UserStatus;
+import com.droovo.tn.usermessagingservice.Entites.shared.CarClientDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.*;
@@ -47,4 +48,8 @@ public class UserDetail {
     boolean accountStatus;
     TypeUser type;
     UserStatus userStatus;
+    CarClientDto car;
+    public static UserDetail empty() {
+        return new UserDetail();
+    }
 }

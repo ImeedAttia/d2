@@ -18,6 +18,7 @@ import java.time.Instant;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FeedBack {
+    //to change only in user service
     @Id
     @Indexed
     @Setter(AccessLevel.MODULE)

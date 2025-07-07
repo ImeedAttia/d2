@@ -9,6 +9,7 @@ import com.droovo.tn.rideservice.Entities.Seat;
 import com.droovo.tn.rideservice.Mappers.CarMapper;
 import com.droovo.tn.rideservice.Repositories.CarRepository;
 import com.droovo.tn.rideservice.Services.ICarService;
+import com.droovo.tn.rideservice.Services.Impl.Clients.UserClientServiceImpl;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -38,6 +39,7 @@ import java.util.Map;
 public class CarServiceImpl implements ICarService {
     final CarRepository carRepository;
     final CarMapper carMapper;
+    final UserClientServiceImpl userClientService;
 
     @Override
     public CarDto createCar(CarDto carDto) {
@@ -215,4 +217,9 @@ public class CarServiceImpl implements ICarService {
         return seats;
     }
 
+    UserDetail getUserForCar(String userId) {
+        log.info("Fetching user for car");
+        // This method should implement logic to fetch user details for a car
+        return userClientService.fetchUser(userId);
+    }
 }
